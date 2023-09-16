@@ -140,7 +140,7 @@ test_accuracy = model.score(X_test, y_test)
 # Print the accuracies
 print(f"Training Set Accuracy: {train_accuracy}")
 print(f"Test Set Accuracy: {test_accuracy}")
-
+print("hello")
 
 # In[ ]:
 
