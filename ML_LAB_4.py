@@ -206,3 +206,37 @@ plt.figure(figsize=(20, 10))
 plot_tree(model_entropy, filled=True, feature_names=['embed_0', 'embed_1'], class_names=['No', 'Yes'], rounded=True)
 plt.show()
 
+
+#A7
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+binary_df = df[df['Label'].isin([0, 1])]
+X = binary_df[['embed_1', 'embed_2']]
+y = binary_df['Label']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create a Decision Tree classifier
+dt_model = DecisionTreeClassifier()
+
+# Fit the Decision Tree model on the training data
+dt_model.fit(X_train, y_train)
+
+# Make predictions on the test data
+dt_predictions = dt_model.predict(X_test)
+
+# Calculate performance metrics for Decision Tree
+dt_accuracy = accuracy_score(y_test, dt_predictions)
+dt_precision = precision_score(y_test, dt_predictions)
+dt_recall = recall_score(y_test, dt_predictions)
+dt_f1 = f1_score(y_test, dt_predictions)
+
+# Print performance metrics for Decision Tree
+print("Decision Tree Metrics:")
+print(f"Accuracy: {dt_accuracy:.2f}")
+print(f"Precision: {dt_precision:.2f}")
+print(f"Recall: {dt_recall:.2f}")
+print(f"F1-Score: {dt_f1:.2f}")
